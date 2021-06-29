@@ -1,6 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import { withRouter } from "react-router";
+import { Route, Switch } from "react-router-dom";
+
 import WordCard from "./components/WordCard";
+import AddWord from "./components/AddWord";
+import NotFound from "./components/NotFound";
 
 class App extends React.Component {
   constructor(props) {
@@ -29,7 +34,17 @@ class App extends React.Component {
         <Container>
           <Title>My Own Dictionary</Title>
           <Line />
-          <WordCard word={this.state.word} />
+          <Switch>
+            <Route
+              path="/"
+              exact
+              render={(props) => (
+                <WordCard word={this.state.word} history={this.props.history} />
+              )}
+            />
+            <Route path="/addword" component={AddWord} />
+            <Route component={NotFound} />
+          </Switch>
         </Container>
         <div>
           <input type="text" ref={this.text} />

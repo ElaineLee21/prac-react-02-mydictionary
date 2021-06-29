@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-const WordCard = ({ word }) => {
-  const myWords = word;
-  console.log({ word }, word);
+const WordCard = (props) => {
+  const myWords = props.word;
 
   return (
     <WordList>

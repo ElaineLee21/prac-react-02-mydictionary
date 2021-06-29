@@ -24,13 +24,11 @@ const AddWord = (props) => {
         <input ref={example_ref} />
       </InputWrapper>
 
-      {/* 아직은 이 버튼에 아무런 동작도 주지 않을거예요 :) */}
       <Button>추가하기</Button>
     </AddContainer>
   );
 };
 
-// 제목 스타일을 잡아줄 거예요.
 const Title = styled.h1`
   width: 100vw;
   margin: 8px;
@@ -47,9 +45,6 @@ const AddContainer = styled.div`
   overflow-y: auto;
 `;
 
-// input이 들어갈 부분을 감싸줄거예요. 배경색도 흰색으로 줘볼게요!
-// 이 div 아래에 있는 p 태그에 접근할 때는 & > p로 접근할 수 있어요.
-// 이 div 아래에 있는 input 태그에 접근할 때는 & > input으로 접근할 수 있어요.
 const InputWrapper = styled.div`
   width: 50vw;
   height: auto;
@@ -76,7 +71,6 @@ const InputWrapper = styled.div`
   }
 `;
 
-// 추가하기 버튼 스타일을 잡아줄거예요.
 const Button = styled.button`
   width: 50vw;
   background-color: #a4a7ab;

@@ -25,8 +25,8 @@ const Title = styled.h1`
 
 const Button = styled.button`
   width: 50vw;
-  background-color: #e7e7e8;
-  color: #eeeeee;
+  background-color: #a4a7ab;
+  color: #ffffff;
   font-size: 16px;
   display: flex;
   align-items: center;
@@ -35,6 +35,9 @@ const Button = styled.button`
   padding: 8px 0px;
   margin: 10px auto;
   border-style: none;
+  &:hover {
+    font-weight: bold;
+  }
 `;
 
 export default NotFound;

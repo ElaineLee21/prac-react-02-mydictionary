@@ -104,13 +104,17 @@ const AddButton = styled.button`
   width: 50px;
   height: 50px;
   border-radius: 50px;
-  background-color: #d3d3d6;
+  background-color: #a4a7ab;
   color: #eeeeee;
   font-size: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-style: none;
+  &:hover {
+    color: #ffffff;
+    font-weight: bold;
+  }
 `;
 
 export default WordCard;

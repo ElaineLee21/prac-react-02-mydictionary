@@ -79,8 +79,8 @@ const InputWrapper = styled.div`
 // 추가하기 버튼 스타일을 잡아줄거예요.
 const Button = styled.button`
   width: 50vw;
-  background-color: #d3d3d6;
-  color: #454746;
+  background-color: #a4a7ab;
+  color: #ffffff;
   font-size: 16px;
   display: flex;
   align-items: center;
@@ -89,6 +89,9 @@ const Button = styled.button`
   padding: 8px 0px;
   margin: 10px auto;
   border-style: none;
+  &:hover {
+    font-weight: bold;
+  }
 `;
 
 export default AddWord;

@@ -10,19 +10,6 @@ const myWordsDefault = {
       desc: "to behave in a particular way as a result of something",
       example: "You never know how he is going to react.",
     },
-    {
-      id: "card_1",
-      word: "component ",
-      desc: "one of several parts of which something is made",
-      example: "Nitrogen is the main component of air.",
-    },
-    {
-      id: "card_2",
-      word: "programming",
-      desc: "the process of writing and testing computer programs",
-      example:
-        "There are several different kinds of programming languages which have been used in the IT industry.",
-    },
   ],
 };
 

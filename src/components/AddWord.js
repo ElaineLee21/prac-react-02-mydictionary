@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
+import { createWord } from "../redux/modules/word";
 
 const AddWord = (props) => {
   const dispatch = useDispatch();
 
-  const word_ref = React.useRef(null);
-  const desc_ref = React.useRef(null);
-  const example_ref = React.useRef(null);
+  const word_ref = useRef();
+  const desc_ref = useRef();
+  const example_ref = useRef();
 
   const handleOnClick = (event) => {
     console.log("handle");
+
+    const newWord = {
+      word: word_ref.current.value,
+      description: desc_ref.current.value,
+      example: example_ref.current.value,
+    };
+    dispatch(createWord(newWord));
+    props.history.push("/");
   };
 
   return (

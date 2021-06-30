@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-
-// redux hook을 불러옵니다.
 import { useSelector } from "react-redux";
 
 const WordCard = (props) => {

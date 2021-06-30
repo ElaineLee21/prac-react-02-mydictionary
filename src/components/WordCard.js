@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 
 const WordCard = (props) => {
   const word_list = useSelector((state) => state.wordItem.word_list);
-  console.log(word_list);
 
   return (
     <WordList>
@@ -24,7 +23,7 @@ const WordCard = (props) => {
               <Text color="#888888" size="8px" underline>
                 예시
               </Text>
-              <Text color="#6C8BA7">{w.example}</Text>
+              <Text color="#5D88C0">{w.example}</Text>
             </WordItem>
           );
         })}

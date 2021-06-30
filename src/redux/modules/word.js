@@ -6,9 +6,9 @@ const myWordsDefault = {
   word_list: [
     {
       id: "card_0",
-      word: "react",
-      desc: "to behave in a particular way as a result of something",
-      example: "You never know how he is going to react.",
+      word: "Today's Vocab에 오신 것을 환영합니다!",
+      desc: "오른쪽 아래에 있는 + 버튼을 눌러",
+      example: "단어 카드를 추가해주세요 :)",
     },
   ],
 };

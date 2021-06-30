@@ -3,8 +3,11 @@ import styled from "styled-components";
 
 const NotFound = (props) => {
   return (
-    <div>
-      <Title>올바르지 않은 주소입니다.</Title>
+    <Div>
+      <Title>
+        올바르지 않은
+        <br /> 주소입니다.
+      </Title>
       <Button
         onClick={() => {
           props.history.goBack();
@@ -12,9 +15,13 @@ const NotFound = (props) => {
       >
         뒤로가기
       </Button>
-    </div>
+    </Div>
   );
 };
+
+const Div = styled.div`
+  overflow: hidden;
+`;
 
 const Title = styled.h1`
   width: 100vw;

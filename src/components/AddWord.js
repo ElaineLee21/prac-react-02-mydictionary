@@ -15,7 +15,7 @@ const AddWord = (props) => {
 
     const newWord = {
       word: word_ref.current.value,
-      description: desc_ref.current.value,
+      desc: desc_ref.current.value,
       example: example_ref.current.value,
     };
     dispatch(createWord(newWord));

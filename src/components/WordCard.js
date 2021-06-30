@@ -1,47 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 
-const myWordsDefault = [
-  {
-    id: "card_0",
-    word: "react",
-    desc: "to behave in a particular way as a result of something",
-    example: "You never know how he is going to react.",
-  },
-  {
-    id: "card_1",
-    word: "component ",
-    desc: "one of several parts of which something is made",
-    example: "Nitrogen is the main component of air.",
-  },
-  {
-    id: "card_2",
-    word: "programming",
-    desc: "the process of writing and testing computer programs",
-    example:
-      "There are several different kinds of programming languages which have been used in the IT industry.",
-  },
-];
+// redux hook을 불러옵니다.
+import { useSelector } from "react-redux";
 
 const WordCard = (props) => {
-  const [myWord, setMyWord] = React.useState(myWordsDefault);
-
-  const addWord = () => {
-    const wordItem = {
-      id: "word_11111123132",
-      word: "test word",
-      desc: "test definition",
-      example: "test example",
-    };
-
-    setMyWord([...myWord, wordItem]);
-  };
+  const word_list = useSelector((state) => state.wordItem.word_list);
+  console.log(word_list);
 
   return (
     <WordList>
       <WordContent>
         <Title>Today's Vocab</Title>
-        {myWord.map((w) => {
+        {word_list.map((w) => {
           return (
             <WordItem key={w.id}>
               <Text color="#888888" size="8px" underline>
@@ -59,7 +30,6 @@ const WordCard = (props) => {
             </WordItem>
           );
         })}
-        <button onClick={addWord}>임시 추가 버튼</button>
         <AddButton
           onClick={() => {
             props.history.push("/write");
@@ -86,6 +56,7 @@ const WordList = styled.div`
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+  position: fixed;
 `;
 
 const WordContent = styled.div`

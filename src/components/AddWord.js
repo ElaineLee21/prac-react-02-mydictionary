@@ -1,10 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 
 const AddWord = (props) => {
+  const dispatch = useDispatch();
+
   const word_ref = React.useRef(null);
   const desc_ref = React.useRef(null);
   const example_ref = React.useRef(null);
+
+  const handleOnClick = (event) => {
+    console.log("handle");
+  };
 
   return (
     <AddContainer>
@@ -24,7 +31,7 @@ const AddWord = (props) => {
         <input ref={example_ref} />
       </InputWrapper>
 
-      <Button>추가하기</Button>
+      <Button onClick={handleOnClick}>추가하기</Button>
     </AddContainer>
   );
 };

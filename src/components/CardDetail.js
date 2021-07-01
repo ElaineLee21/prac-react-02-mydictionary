@@ -1,34 +1,36 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
-import { addWordFB } from "../redux/modules/word";
 
-const AddWord = (props) => {
+import { useDispatch, useSelector } from "react-redux";
+
+const CardDetail = (props) => {
   const dispatch = useDispatch();
 
   const word_ref = useRef();
   const desc_ref = useRef();
   const example_ref = useRef();
 
-  const addWord = () => {
+  const new_list = useSelector((state) => state.word.word_list);
+  let word_index = parseInt(props.match.params.ind);
+
+  const word = new_list[word_index] && new_list[word_index].word;
+  const desc = new_list[word_index] && new_list[word_index].desc;
+  const example = new_list[word_index] && new_list[word_index].example;
+
+  const re_item = () => {
+    // 수정 후 입력값
     const word = word_ref.current.value;
     const desc = desc_ref.current.value;
     const example = example_ref.current.value;
 
-    const new_word_item = { word: word, desc: desc, example: example };
-
-    console.log(new_word_item);
-    if (word && desc && example) {
-      dispatch(addWordFB(new_word_item));
-      props.history.goBack();
-    } else {
-      alert("빈칸을 입력해주세요");
-    }
+    // 새로 수정시키고 싶은 내용을 딕셔너리 형태로 저장
+    const re_dict_item = { word: word, desc: desc, example: example };
+    console.log(re_dict_item);
   };
 
   return (
     <AddContainer>
-      <Title>단어 추가하기</Title>
+      <Title>단어 수정하기</Title>
       <InputWrapper>
         <p>단어</p>
         <input ref={word_ref} />
@@ -46,11 +48,12 @@ const AddWord = (props) => {
 
       <Button
         onClick={() => {
-          addWord();
+          re_item();
         }}
       >
-        추가하기
+        수정하기
       </Button>
+      <Button color="#E20000">삭제하기</Button>
     </AddContainer>
   );
 };
@@ -77,7 +80,7 @@ const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 8px 16px;
-  margin: 10px auto;
+  margin: 0px auto;
   box-sizing: border-box;
   background-color: #e7e7e8;
   & > p {
@@ -86,10 +89,11 @@ const InputWrapper = styled.div`
     color: #888888;
     margin: 4px 0px;
   }
+
   & > input {
     border: 1px solid #000000;
     width: 100%;
-    padding: 12px 4px;
+    padding: 5px 4px;
     margin: 6px 0px;
     box-sizing: border-box;
     border-style: none;
@@ -106,11 +110,13 @@ const Button = styled.button`
   justify-content: center;
   box-sizing: border-box;
   padding: 8px 0px;
-  margin: 10px auto;
+  margin: 0px auto;
+  margin-top: 10px;
   border-style: none;
   &:hover {
     font-weight: bold;
   }
+  ${(props) => (props.color ? `color: ${props.color};` : "")}
 `;
 
-export default AddWord;
+export default CardDetail;

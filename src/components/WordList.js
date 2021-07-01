@@ -1,41 +1,46 @@
 import React from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
 
-const WordCard = (props) => {
-  const word_list = useSelector((state) => state.wordItem.word_list);
+const WordList = (props) => {
+  const wordItem = props.list;
+  console.log(props.list);
 
   return (
-    <WordList>
+    <WordContainer>
       <WordContent>
         <Title>Today's Vocab</Title>
-        {word_list.map((w) => {
+        {wordItem.map((list, ind) => {
           return (
-            <WordItem key={w.id}>
+            <Card
+              key={ind}
+              onClick={() => {
+                props.history.push("/detail");
+              }}
+            >
               <Text color="#888888" size="8px" underline>
                 단어
               </Text>
-              <Text>{w.word}</Text>
+              <Text>{list.word}</Text>
               <Text color="#888888" size="8px" underline>
                 설명
               </Text>
-              <Text>{w.desc}</Text>
+              <Text>{list.desc}</Text>
               <Text color="#888888" size="8px" underline>
                 예시
               </Text>
-              <Text color="#5D88C0">{w.example}</Text>
-            </WordItem>
+              <Text color="#5D88C0">{list.example}</Text>
+            </Card>
           );
         })}
         <AddButton
           onClick={() => {
-            props.history.push("/write");
+            props.history.push("/addword");
           }}
         >
           +
         </AddButton>
       </WordContent>
-    </WordList>
+    </WordContainer>
   );
 };
 
@@ -46,7 +51,7 @@ const Title = styled.h1`
   color: #454746;
 `;
 
-const WordList = styled.div`
+const WordContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -62,13 +67,17 @@ const WordContent = styled.div`
   align-items: center;
 `;
 
-const WordItem = styled.div`
+const Card = styled.div`
   width: 50vw;
   padding: 16px;
   margin: 8px;
   background-color: #e7e7e8;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
+  &:hover {
+    background-color: #a4a7ab;
+  }
 `;
 
 const Text = styled.p`
@@ -99,4 +108,4 @@ const AddButton = styled.button`
   }
 `;
 
-export default WordCard;
+export default WordList;

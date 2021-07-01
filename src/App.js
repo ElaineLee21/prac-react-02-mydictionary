@@ -1,29 +1,29 @@
 import React from "react";
 import styled from "styled-components";
+import { firestore } from "./firebase";
+
+// Router
 import { withRouter } from "react-router";
 import { Route, Switch } from "react-router-dom";
 
-import WordCard from "./components/WordCard";
+// Redux
+import { connect } from "react-redux";
+import { loadWordFB } from "./redux/modules/word";
+
+// Components
+import WordList from "./components/WordList";
 import AddWord from "./components/AddWord";
+import CardDetail from "./components/CardDetail";
 import NotFound from "./components/NotFound";
 
-// 리덕스 스토어와 연결하기 위해 connect라는 친구를 호출할게요!
-import { connect } from "react-redux";
-// 리덕스 모듈에서 (bucket 모듈에서) 액션 생성 함수 두개를 가져올게요!
-import { loadWord, createWord } from "./redux/modules/word";
-
-// 이 함수는 스토어가 가진 상태값을 props로 받아오기 위한 함수예요.
 const mapStateToProps = (state) => ({
-  word_list: state.wordItem.list,
+  new_list: state.word.word_list,
+  is_loaded: state.word.is_loaded,
 });
 
-// 이 함수는 값을 변화시키기 위한 액션 생성 함수를 props로 받아오기 위한 함수예요.
 const mapDispatchToProps = (dispatch) => ({
   load: () => {
-    dispatch(loadWord());
-  },
-  create: (new_item) => {
-    dispatch(createWord(new_item));
+    dispatch(loadWordFB());
   },
 });
 
@@ -33,17 +33,31 @@ class App extends React.Component {
     this.state = {};
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.load();
+  }
 
   render() {
     return (
-      <Container>
-        <Switch>
-          <Route path="/" exact component={WordCard} />
-          <Route path="/write" exact component={AddWord} />
-          <Route component={NotFound} />
-        </Switch>
-      </Container>
+      <React.Fragment>
+        <Container>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={(props) => (
+                <WordList
+                  list={this.props.new_list}
+                  history={this.props.history}
+                />
+              )}
+            />
+            <Route path="/addword" exact component={AddWord} />
+            <Route path="/detail" exact component={CardDetail} />
+            <Route component={NotFound} />
+          </Switch>
+        </Container>
+      </React.Fragment>
     );
   }
 }
